@@ -11,6 +11,7 @@ function App() {
     const [isActive, setIsActive] = useState(true);
     const [isPause, setIsPause] = useState(false);
     const [addTask, setAddTask] = useState(false);
+    const [startTask, setStartTask] = useState(true);
 
     const [currentTask, setCurrentTask] = useState([{label: "Data Structure", totalTime: 11}, {label: "Algorthims", totalTime: 9}]);
     const [completedTask, setCompletedTask] = useState([]);
@@ -48,7 +49,8 @@ function App() {
             const next = currentTask[0];
             setTotalTime(next.totalTime);
             setCurrentTime(next.totalTime);
-            setTimerText(next.label);
+            setTimerText("Start Task: " + next.label);
+            setIsPause(true);
         }
         else if (currentTime === 0) {
             const finished = currentTask[0];
@@ -60,7 +62,8 @@ function App() {
                 const next = remaining[0];
                 setTotalTime(next.totalTime);
                 setCurrentTime(next.totalTime);
-                setTimerText(next.label);
+                setTimerText("Start Task: " + next.label);
+                setIsPause(true);
             } else {
                 setTimerText("No Tasks!!!");
                 setCurrentTime(0);
@@ -71,6 +74,21 @@ function App() {
 
     const replayFunction = () => {
         setCurrentTime(totalTime);
+    }
+
+    const playFunction = () => {
+        if (startTask) {
+            if (currentTask.length === 0) {
+                setTimerText("No Tasks!!!");
+            }
+            else {
+                setTimerText(currentTask[0].label);
+            }
+            setIsPause(false);
+        }
+        else{
+            setIsPause(false);
+        }
     }
 
     return (
@@ -91,7 +109,7 @@ function App() {
                     <TimerSection currentTime = {currentTime}
                                   totalTime = {totalTime}
                                   pauseFunction = {() => setIsPause(true)}
-                                  playFunction = {() => setIsPause(false)}
+                                  playFunction = {playFunction}
                                   replayFunction = {replayFunction}
                                   ongoingTask = {timerText}
                     />
