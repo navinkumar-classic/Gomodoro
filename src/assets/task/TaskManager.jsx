@@ -21,7 +21,7 @@ export default function TaskManager({currentTask, completedTask, deleteTask}) {
                 isOngoing ? (
                         <div className={``}>
                             {currentTask.map((task, index) => {
-                                return <Task key = {index} task={task.label} totalTime={task.totalTime} taskType={task.type} deleteFunction={() => deleteTask(index)} />
+                                return <Task key = {index} ind = {index} task={task.label} totalTime={task.totalTime} taskType={task.type} deleteFunction={() => deleteTask(index)} />
                             })}
                         </div>
                 ) : (

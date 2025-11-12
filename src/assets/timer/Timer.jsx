@@ -71,7 +71,7 @@ export default function Timer({currentTime, totalTime, ongoingTask}) {
                         {String(Math.floor(currentTime / 60)).padStart(2, "0")}:
                         {String(Math.floor(currentTime % 60)).padStart(2, "0")}
                 </div>
-                <div className="text-lg mt-1 poppins italic text-[#9B9B9B]">{ongoingTask}</div>
+                <div className="md:text-lg text-sm mt-1 poppins italic text-[#9B9B9B]">{ongoingTask}</div>
             </div>
         </div>
     );

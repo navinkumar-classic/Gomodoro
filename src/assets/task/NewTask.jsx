@@ -42,8 +42,8 @@ export default function NewTask({exit, appendCurrentTask}) {
         <div
             className={`bg-transparent z-50 w-full h-full absolute top-0 left-0 flex items-center justify-center rajdhani text-white`}>
             <div
-                className={`bg-[#4D4D4D]/50 backdrop-blur-[2px] rounded-3xl mt-4 flex flex-col justify-center items-center px-12 py-7`}>
-                <div className={`font-black text-3xl px-15 py-6`}>
+                className={`bg-[#4D4D4D]/50 backdrop-blur-[2px] rounded-3xl mt-4 flex flex-col justify-center items-center md:px-12 px-4 py-7 md:mx-0 mx-3`}>
+                <div className={`font-black text-3xl md:px-15 px-4 py-6`}>
                     Add Task / Break
                 </div>
 

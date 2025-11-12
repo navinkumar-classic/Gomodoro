@@ -115,8 +115,6 @@ function App() {
         if (justFinishedTask) {
             setTotalTime((prev) => prev + extraSeconds);
             setCurrentTime((prev) => prev + extraSeconds);
-            setIsPause(false);
-            setTimerText(`Extended: ${justFinishedTask.label}`);
             setJustFinishedTask(null);
             setIsInitialized(true);
             return;
@@ -125,8 +123,6 @@ function App() {
         if (isInitialized && currentTask.length > 0) {
             setTotalTime((prev) => prev + extraSeconds);
             setCurrentTime((prev) => prev + extraSeconds);
-            setTimerText(`Extended: ${currentTask[0].label}`);
-            setIsPause(false);
         }
     };
 
@@ -203,6 +199,11 @@ function App() {
                     />
                 </div>
             )}
+
+            <audio autoPlay>
+                <source src="/reverie.mp3" type="audio/mpeg"/>
+                Your browser does not support the audio element.
+            </audio>
         </>
     );
 }
