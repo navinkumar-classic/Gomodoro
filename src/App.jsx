@@ -16,7 +16,7 @@ function App() {
 
     const [justFinishedTask, setJustFinishedTask] = useState(null); // task waiting for user input
     const [isInitialized, setIsInitialized] = useState(false); // whether the currentTask[0] has been loaded into the timer
-    const [timerText, setTimerText] = useState("No Tasks!!!");
+    const [timerText, setTimerText] = useState("Add Tasks");
 
     // delete task from queue
     const deleteTask = (index) => {
@@ -38,7 +38,7 @@ function App() {
     useEffect(() => {
         // no tasks: reset
         if (!currentTask || currentTask.length === 0) {
-            setTimerText("No Tasks!!!");
+            setTimerText("Add Tasks");
             setCurrentTime(0);
             setTotalTime(0);
             setIsInitialized(false);
@@ -190,6 +190,7 @@ function App() {
                         currentTime={currentTime}
                         totalTime={totalTime}
                         pauseFunction={() => setIsPause(true)}
+                        isPause={isPause}
                         playFunction={playFunction}
                         replayFunction={replayFunction}
                         ongoingTask={timerText}

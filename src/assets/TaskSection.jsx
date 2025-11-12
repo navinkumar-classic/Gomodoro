@@ -13,6 +13,9 @@ export default function TaskSection({setAddTask, currentTask, completedTask, del
     const [showVolume, setShowVolume] = useState(false);
     const [volume, setVolume] = useState(0.5);
 
+    const [musicHover, setMusicHover] = useState(false);
+    const [soundHover, setSoundHover] = useState(false);
+
     const handleVolumeChange = (event, newValue) => {
         setVolume(newValue);
         audioRef.current.volume = newValue;
@@ -38,31 +41,31 @@ export default function TaskSection({setAddTask, currentTask, completedTask, del
     }
 
     return(
-        <div className={`basis-[60%] h-screen lg:p-24 md:p-12 p-9 flex flex-col z-10`}>
+        <div className={`basis-[60%] h-screen lg:p-20 md:p-12 p-[2.5vw] flex flex-col z-10 lg:mb-0 mb-10`}>
             <TaskManager currentTask={currentTask}
                          completedTask={completedTask}
                          deleteTask={deleteTask}
             />
             <div
-                className={`bg-[#4D4D4D]/50 backdrop-blur-[2px] gap-4 rounded-full mt-4 flex justify-center items-center`}>
+                className={`lg:bg-[#4D4D4D]/50 bg-[#4D4D4D]/70 lg:backdrop-blur-[2px] backdrop-blur-[4px] gap-4 rounded-full mt-4 flex lg:relative fixed lg:bottom-auto bottom-4 lg:w-auto w-[95vw] justify-center items-center`}>
 
                 {isPlaying ? (
-                    <span onClick={() => stopMusic()}>
-                        <MusicOn width={50} height={50} color="#FFF"/>
+                    <span onClick={() => stopMusic()} onMouseEnter={() => setMusicHover(true)} onMouseLeave={() => setMusicHover(false)}>
+                        <MusicOn width={50} height={50} color={`${musicHover ? "#BBBBBB" : "#FFFFFF"}`}/>
                     </span>
                 ):(
-                    <span onClick={() => startMusic()}>
-                        <MusicOff width={50} height={50} color="#FFF"/>
+                    <span onClick={() => startMusic()} onMouseEnter={() => setMusicHover(true)} onMouseLeave={() => setMusicHover(false)}>
+                        <MusicOff width={50} height={50} color={`${musicHover ? "#BBBBBB" : "#FFFFFF"}`}/>
                     </span>
                 )}
 
 
                 <div className={`bg-[#FF5959] rounded-full cursor-pointer p-3`} onClick={() => setAddTask(true)}>
-                    <Plus width={38} height={38} lineWidth={8}/>
+                    <Plus width={38} height={38} lineWidth={8} color={"white"} />
                 </div>
 
-                <span onClick={() => showHideVolumeSlider()} >
-                    <Sound width={50} height={50} color="#FFF"/>
+                <span onClick={() => showHideVolumeSlider()} onMouseEnter={() => setSoundHover(true)} onMouseLeave={() => setSoundHover(false)} className={`relative cursor-pointer`} >
+                    <Sound width={50} height={50} color={`${soundHover ? "#BBBBBB" : "#FFFFFF"}`}/>
 
                     {showVolume && (
                         <div className="absolute bottom-16 left-1/2 -translate-x-1/2 bg-[#222] p-3 rounded-xl shadow-lg w-64">
