@@ -14,8 +14,8 @@ export default function RightMenu({topOffset, currentTime, totalTime, isPause, p
 
     return (
         <div
-            className={`${rightMenuOpen ? "visible" : "hidden"} fixed right-0 p-3 text-white z-[100] mr-[15px] px-8 bg-[#161616]/50 border-l border-t border-[#222222] overflow-y-auto flex flex-col items-center justify-center`}
-            style={{top: topOffset, height: `${window.innerHeight - topOffset}px`}}
+            className={`${rightMenuOpen ? "visible" : "hidden"} md:w-auto w-[100vw] fixed right-0 p-3 text-white z-[100] md:mr-[15px] mr-0 px-8 bg-[#161616]/50 border-l border-t border-[#222222] overflow-y-auto flex flex-col items-center justify-center`}
+            style={{top: topOffset, bottom: 0}}
         >
             <PDFTimer currentTime={currentTime} totalTime={totalTime}/>
 

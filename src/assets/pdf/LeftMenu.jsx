@@ -1,16 +1,26 @@
 import LinearProgress from "@mui/material/LinearProgress";
 import {useEffect, useState} from "react";
 
-export default function LeftMenu({ numPages, pagesFinished, pagesDone, changePageFinish, topOffset, leftMenuOpen, currentTime, totalTime}) {
+export default function LeftMenu({
+                                     numPages,
+                                     pagesFinished,
+                                     pagesDone,
+                                     changePageFinish,
+                                     topOffset,
+                                     leftMenuOpen,
+                                     currentTime,
+                                     totalTime
+                                 }) {
     const [avgTime, setAvgTime] = useState(0);
 
     useEffect(() => {
         setAvgTime((totalTime - currentTime) / (pagesDone * 60));
-    },[pagesDone])
-    return(
+    }, [pagesDone])
+
+    return (
         <div
-            className={`${leftMenuOpen ? "visible" : "hidden"} fixed left-0 p-3 text-white z-[100] bg-[#161616]/50 border-r border-[#222222] w-[20vw] overflow-y-auto flex flex-col`}
-            style={{top: topOffset, height: `${window.innerHeight - topOffset}px`}}
+            className={`${leftMenuOpen ? "visible" : "hidden"} fixed left-0 p-3 text-white z-[100] bg-[#161616]/50 border-r border-[#222222] md:w-[20vw] w-[100vw] overflow-y-auto flex flex-col`}
+            style={{top: topOffset, bottom: 0}}
         >
             <div className={`grow`}>
                 <div className={`flex flex-wrap gap-2 mb-5 items-center justify-center`}>
@@ -35,8 +45,9 @@ export default function LeftMenu({ numPages, pagesFinished, pagesDone, changePag
             <div>
                 <div className={`flex justify-between items-center`}>
                     <div>Average Time Per Page:</div>
-                    <div className={`bg-[#161616] px-2 py-0.5 rounded-xs border border-[#222222]`}>{avgTime.toFixed(2)} m</div>
-
+                    <div
+                        className={`bg-[#161616] px-2 py-0.5 rounded-xs border border-[#222222]`}>{avgTime.toFixed(2)} m
+                    </div>
                 </div>
             </div>
 

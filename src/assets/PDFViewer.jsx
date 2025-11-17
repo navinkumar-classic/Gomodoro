@@ -1,12 +1,10 @@
 import {useState, useRef, useEffect, useLayoutEffect} from "react";
 import {pdfjs} from "react-pdf";
 import pdfFile from "../22BCE1020-Report.pdf";
-import Rotate from "./icons/rotate.jsx";
-import Menu from "./icons/Menu.jsx";
 import PDFDocument from "./pdf/PDFDocument.jsx";
 import LeftMenu from "./pdf/LeftMenu.jsx";
 import RightMenu from "./pdf/RightMenu.jsx";
-import Clock from "./icons/Clock.jsx";
+import TaskBar from "./pdf/TaskBar.jsx";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
@@ -27,8 +25,17 @@ export default function PDFViewer() {
 
     const [currentTime, setCurrentTime] = useState(600);
     const [totalTime, setTotalTime] = useState(600);
-    const [isActive, setIsActive] = useState(true);
+    const isActive = true;
     const [isPause, setIsPause] = useState(false);
+
+    useEffect(() => {
+        const width = window.innerWidth;
+        if (width < 768) {
+            setLeftMenuOpen(false);
+            setRightMenuOpen(false);
+            setScale(55);
+        }
+    }, [])
 
     useEffect(() => {
         let timeInterval;
@@ -108,43 +115,11 @@ export default function PDFViewer() {
     return (
         <div className="w-screen h-screen bg-transparent flex flex-col rajdhani">
 
-            <div ref={taskbarRef}
-                 className="z-[99] w-screen bg-[#161616]/50 text-white py-6 px-5 border-b border-[#222222] flex items-center">
-
-                <span onClick={() => setLeftMenuOpen(!leftMenuOpen)} className={`cursor-pointer`}>
-                    <Menu width={30} height={30} color={"white"}/>
-                </span>
-                <div className={`mx-5 text-4xl font-medium text-gray-500 cursor-default`}>|</div>
-                <div className={`text-xl mr-5 cursor-default`}>File Name</div>
-
-                <div className={`ml-auto text-xl flex items-center`}>
-                    <div
-                        className={`bg-[#161616] px-3 py-1 border border-[#222222]`}>{String(pageNumber).padStart(3, '0')}</div>
-                    <div className={'mx-1'}>/</div>
-                    <div className={``}>{String(numPages).padStart(3, '0')}</div>
-                </div>
-
-                <div className={`mx-5 text-4xl font-medium text-gray-500`}>|</div>
-                <div className={`text-xl flex items-center`}>
-                    <div className={`text-3xl mr-2 cursor-pointer font-medium`} onClick={() => setScale(scale + 5)}>+
-                    </div>
-                    <div
-                        className={`bg-[#161616] px-3 py-1 border border-[#222222]`}>{String(scale).padStart(3, '0')}</div>
-                    <div className={`text-3xl ml-2 cursor-pointer font-medium`} onClick={() => setScale(scale - 5)}>-
-                    </div>
-                </div>
-
-                <div className={`mx-5 text-4xl font-medium text-gray-500`}>|</div>
-                <span className="cursor-pointer" onClick={() => setAngle(angle + 90)}>
-                    <Rotate width={30} height={30} color={"white"}/>
-                </span>
-
-                <div className={`mx-5 text-4xl font-medium text-gray-500`}>|</div>
-                <span onClick={() => setRightMenuOpen(!rightMenuOpen)} className={`cursor-pointer`}>
-                    <Clock width={30} height={30} color={"white"}/>
-                </span>
-
-            </div>
+            <TaskBar ref={taskbarRef} numPages={numPages} pagesDone={pagesDone} pagesFinished={pagesFinished}
+                     angle={angle} leftMenuOpen={leftMenuOpen} currentTime={currentTime} totalTime={totalTime}
+                     rightMenuOpen={rightMenuOpen} setAngle={setAngle} setLeftMenuOpen={setLeftMenuOpen}
+                     setRightMenuOpen={setRightMenuOpen} pageNumber={pageNumber} taskbarRef={taskbarRef} scale={scale}
+                     setScale={setScale}/>
 
             <LeftMenu numPages={numPages} pagesDone={pagesDone} leftMenuOpen={leftMenuOpen}
                       changePageFinish={changePageFinish} pagesFinished={pagesFinished} topOffset={topOffset}
