@@ -1,8 +1,8 @@
-import TaskManager from "./task/TaskManager.jsx";
-import Plus from "./icons/Plus.jsx";
-import MusicOn from "./icons/MusicOn.jsx";
-import MusicOff from "./icons/MusicOff.jsx";
-import Sound from "./icons/Sound.jsx";
+import TaskManager from "./TaskManager.jsx";
+import Plus from "../icons/Plus.jsx";
+import MusicOn from "../icons/MusicOn.jsx";
+import MusicOff from "../icons/MusicOff.jsx";
+import Sound from "../icons/Sound.jsx";
 import {useState, useRef} from "react";
 import { Slider } from "@mui/material";
 

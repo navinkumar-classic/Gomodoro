@@ -1,7 +1,7 @@
-import Timer from "./timer/Timer.jsx";
-import Replay from "./icons/Replay.jsx";
-import Next from "./icons/Next.jsx";
-import PlayPause from "./icons/PlayPause.jsx";
+import Timer from "./Timer.jsx";
+import Replay from "../icons/Replay.jsx";
+import Next from "../icons/Next.jsx";
+import PlayPause from "../icons/PlayPause.jsx";
 
 import { useState } from "react";
 
