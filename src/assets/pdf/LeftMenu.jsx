@@ -19,7 +19,7 @@ export default function LeftMenu({
 
     return (
         <div
-            className={`${leftMenuOpen ? "visible" : "hidden"} fixed left-0 p-3 text-white z-[100] bg-[#161616]/50 border-r border-[#222222] md:w-[20vw] w-[100vw] overflow-y-auto flex flex-col`}
+            className={`${leftMenuOpen ? "visible" : "hidden"} fixed left-0 p-3 text-white z-[100] md:bg-[#161616]/50 bg-[#161616]/90 md:backdrop-blur-[0px] backdrop-blur-[2px] border-r border-[#222222] md:w-[20vw] w-[100vw] overflow-y-auto flex flex-col`}
             style={{top: topOffset, bottom: 0}}
         >
             <div className={`grow`}>
@@ -37,7 +37,7 @@ export default function LeftMenu({
 
                 <LinearProgress variant="determinate" value={pagesDone * 100 / numPages} color="success"/>
                 <div className={'flex justify-between items-center'}>
-                    <div className={'text-right'}>{(pagesDone * 100 / numPages).toFixed(2)} %</div>
+                    <div className={'text-right'}>{numPages === 0 ? "0.00" :(pagesDone * 100 / numPages).toFixed(2)} %</div>
                     <div className={'text-right'}>{pagesDone} / {numPages}</div>
                 </div>
             </div>
@@ -46,7 +46,7 @@ export default function LeftMenu({
                 <div className={`flex justify-between items-center`}>
                     <div>Average Time Per Page:</div>
                     <div
-                        className={`bg-[#161616] px-2 py-0.5 rounded-xs border border-[#222222]`}>{avgTime.toFixed(2)} m
+                        className={`bg-[#161616] px-2 py-0.5 rounded-xs border border-[#222222]`}>{isNaN(avgTime) ? "0.00": avgTime.toFixed(2)} m
                     </div>
                 </div>
             </div>

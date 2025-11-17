@@ -1,8 +1,9 @@
 import Menu from "../icons/Menu.jsx";
 import Rotate from "../icons/rotate.jsx";
 import Clock from "../icons/Clock.jsx";
+import Close from "../icons/Close.jsx";
 
-export default function TaskBar({ numPages, pageNumber, scale, angle, leftMenuOpen, setLeftMenuOpen, rightMenuOpen, setRightMenuOpen, taskbarRef, setScale, setAngle}) {
+export default function TaskBar({ numPages, pageNumber, scale, angle, leftMenuOpen, setLeftMenuOpen, rightMenuOpen, setRightMenuOpen, taskbarRef, setScale, setAngle, pdfName, clearPdfFile}) {
 
     const openCloseLeftMenu = () => {
         const width = window.innerWidth;
@@ -46,7 +47,10 @@ export default function TaskBar({ numPages, pageNumber, scale, angle, leftMenuOp
                     <Menu width={30} height={30} color={"white"}/>
                 </span>
             <div className={`hidden md:block md:mx-5 mx-2 text-4xl font-medium text-gray-500 cursor-default`}>|</div>
-            <div className={`text-xl hidden md:block mr-5 cursor-default`}>File Name</div>
+            <div className={`text-xl hidden md:block mr-5 cursor-default`}>{pdfName}</div>
+            <span className={`cursor-pointer hidden md:block`} onClick={() => clearPdfFile()}>
+                <Close width={22} height={22} color={"white"}/>
+            </span>
 
             <div className={`ml-auto md:text-xl text-lg flex items-center`}>
                 <div className={`md:text-3xl text-xl mr-2 cursor-pointer font-medium`} onClick={() => setScale(scale + 5)}>+
